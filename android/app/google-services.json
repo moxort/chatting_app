@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "875027146134",
+    "project_id": "chattingapp-8c1a3",
+    "storage_bucket": "chattingapp-8c1a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875027146134:android:9efc04d6823a0dae7ba9b7",
+        "android_client_info": {
+          "package_name": "com.vladyslav.petlovyi.chatting_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfHzLGAY7oqZGaeMM-N_Yq_qSFBU3_VFs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
