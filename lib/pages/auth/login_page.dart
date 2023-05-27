@@ -26,7 +26,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 10,),
                 const Text("Login now to express your blablablas!", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
-                Image.asset("assets/login-talking.jpg")
+                Image.asset("assets/login-talking.jpg"),
+                TextFormField()
               ],
             )
           ),
