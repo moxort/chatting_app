@@ -1,9 +1,11 @@
+import 'package:chatting_app/helper/helper_function.dart';
 import 'package:chatting_app/pages/auth/login_page.dart';
+import 'package:chatting_app/pages/home_page.dart';
 import 'package:chatting_app/service/auth_service.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/widgets.dart';
+import '../../widgets/widgets.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -14,8 +16,9 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   AuthService authService = AuthService();
-
   bool _isLoading = false;
+
+
   final formKey = GlobalKey<FormState>();
   String email = "";
   String password = "";
@@ -160,12 +163,15 @@ class _RegisterPageState extends State<RegisterPage> {
       setState(() {
         _isLoading = true;
       });
-      await authService.registerUserWithEmailAndPassword(fullName, email, password)
-          .then((value) {
+      await authService
+          .registerUserWithEmailAndPassword(fullName, email, password)
+          .then((value) async{
             if(value == true) {
               //save the shared preference state
-
-
+              await HelperFunctions.saveUserLoggedInStatus(true);
+              await HelperFunctions.saveUserEmailSF(email);
+              await HelperFunctions.saveUserNameSF(fullName);
+              nextScreenReplace(context, const HomePage());
 
             } else {
               showSnackbar(context, Colors.red, value);
