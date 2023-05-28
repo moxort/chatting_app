@@ -1,4 +1,5 @@
 import 'package:chatting_app/pages/auth/login_page.dart';
+import 'package:chatting_app/service/auth_service.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,9 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  AuthService authService = AuthService();
+
+  bool _isLoading = false;
   final formKey = GlobalKey<FormState>();
   String email = "";
   String password = "";
@@ -22,7 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
       // appBar: AppBar(
       //   backgroundColor: Theme.of(context).primaryColor,
       // ),
-      body: SingleChildScrollView(
+      body:  _isLoading ? const Center(child: CircularProgressIndicator(color: Colors.black)) : SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 80),
           child: Form(
@@ -35,26 +39,26 @@ class _RegisterPageState extends State<RegisterPage> {
                     style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 10,),
-                  const Text("Create an account now to chat with your besties!", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
+                  const Text("Create an account now to chat with your besties!",
+                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
                   Image.asset("assets/register.png"),
                   const SizedBox(height: 15),
                   TextFormField(
                     decoration: textInputDecoration.copyWith(
                         labelText: "Full Name",
-                        prefixIcon: const Icon(
+                        prefixIcon: Icon(
                           Icons.person,
-                          color: Colors.black,
+                          color: Theme.of(context).primaryColor,
                         )),
-                    onChanged: (input) {
+                    onChanged: (val) {
                       setState(() {
-                        fullName = input;
+                        fullName = val;
                       });
                     },
-
                     validator: (val) {
-                      if(val!.isEmpty){
+                      if (val!.isNotEmpty) {
                         return null;
-                      } else{
+                      } else {
                         return "Name cannot be empty";
                       }
                     },
@@ -151,7 +155,22 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  register() {
+  register() async {
+    if(formKey.currentState!.validate()){
+      setState(() {
+        _isLoading = true;
+      });
+      await authService.registerUserWithEmailAndPassword(fullName, email, password)
+          .then((value) {
+            if(value == true) {
+              //save the shared preference state
+            } else {
+              setState(() {
+                _isLoading = false;
+              });
+            }
+      });
+    }
   }
 
 }
