@@ -61,7 +61,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 leading: const Icon(Icons.group),
                 title: const Text(
-                  "Groups",
+                  "BlaBlas",
                   style: TextStyle(color: Colors.black),
                 ),
               ),
@@ -71,7 +71,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 selectedColor: Theme.of(context).primaryColor,
                 contentPadding:
                 const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                leading: const Icon(Icons.group),
+                leading: const Icon(Icons.person),
                 title: const Text(
                   "Profile",
                   style: TextStyle(color: Colors.black),
