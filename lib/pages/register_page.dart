@@ -164,7 +164,11 @@ class _RegisterPageState extends State<RegisterPage> {
           .then((value) {
             if(value == true) {
               //save the shared preference state
+
+
+
             } else {
+              showSnackbar(context, Colors.red, value);
               setState(() {
                 _isLoading = false;
               });
