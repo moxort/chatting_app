@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 10,),
                 const Text("Login now to chat with your besties!", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
-                Image.asset("assets/login-talking.jpg"),
+                Image.asset("assets/login-talking.png"),
                 const SizedBox(height: 15),
                 TextFormField(
                   decoration: textInputDecoration.copyWith(
